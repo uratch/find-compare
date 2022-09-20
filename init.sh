@@ -22,19 +22,21 @@ echo "A" > dir_nas/dir/a.txt
 sleep 1
 echo "A" > dir_anf/a.txt
 echo "A" > dir_anf/dir/a.txt
-
+# simulate rsync -a
 touch -r dir_nas/a.txt     dir_anf/a.txt
 touch -r dir_nas/dir/a.txt dir_anf/dir/a.txt
 
 #
-# different file.
+# different file. - normal update
 #
 echo "B" > dir_nas/b.txt
 echo "B" > dir_nas/dir/b.txt
+echo "B" > dir_anf/b.txt
+echo "B" > dir_anf/dir/b.txt
 # add sleep difference for buffering.
 sleep 2
-echo "b" > dir_anf/b.txt
-echo "b" > dir_anf/dir/b.txt
+echo "b" > dir_nas/b.txt
+echo "b" > dir_nas/dir/b.txt
 
 #
 # milli sec difference file.
