@@ -11,12 +11,31 @@ fi
 mkdir -p dir_nas/dir
 mkdir -p dir_anf/dir
 
+#
+# both same file.
+#
 echo "A" > dir_nas/a.txt
 echo "A" > dir_nas/dir/a.txt
 echo "A" > dir_anf/a.txt
 echo "A" > dir_anf/dir/a.txt
 
+#
+# different file.
+#
 echo "B" > dir_nas/b.txt
 echo "B" > dir_nas/dir/b.txt
 echo "b" > dir_anf/b.txt
 echo "b" > dir_anf/dir/b.txt
+
+#
+# milli sec difference file.
+#
+echo "C" > dir_nas/c.txt
+echo "C" > dir_nas/dir/c.txt
+echo "C" > dir_anf/c.txt
+echo "C" > dir_anf/dir/c.txt
+
+TIMESTAMP=`stat dir_nas/c.txt |grep Modify|awk '{print $2$3}'| sed -e 's/[-|:]//g' | awk -F'.' '{print $1}' | sed -e 's/\(..\)$/.\1/'`
+touch -t $TIMESTAMP dir_anf/c.txt
+TIMESTAMP=`stat dir_nas/dir/c.txt |grep Modify|awk '{print $2$3}'| sed -e 's/[-|:]//g' | awk -F'.' '{print $1}' | sed -e 's/\(..\)$/.\1/'`
+touch -t $TIMESTAMP dir_anf/dir/c.txt
