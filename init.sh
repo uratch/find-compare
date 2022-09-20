@@ -39,3 +39,36 @@ TIMESTAMP=`stat dir_nas/c.txt |grep Modify|awk '{print $2$3}'| sed -e 's/[-|:]//
 touch -t $TIMESTAMP dir_anf/c.txt
 TIMESTAMP=`stat dir_nas/dir/c.txt |grep Modify|awk '{print $2$3}'| sed -e 's/[-|:]//g' | awk -F'.' '{print $1}' | sed -e 's/\(..\)$/.\1/'`
 touch -t $TIMESTAMP dir_anf/dir/c.txt
+
+#
+# only NAS.
+#
+echo "D" > dir_nas/d.txt
+echo "D" > dir_nas/dir/d.txt
+
+#
+# only ANF.
+#
+echo "E" > dir_anf/e.txt
+echo "E" > dir_anf/dir/e.txt
+
+#
+# find
+#
+if [ -f find_nas.txt ];then
+  rm -rf find_nas.txt
+fi
+
+if [ -f find_anf.txt ];then
+  rm -rf find_anf.txt
+fi
+
+cd dir_nas
+find . -type f -printf "%M %u %U %g %G %s %TD %TT %p \n" > ../find_nas.txt
+
+cd ../
+
+cd dir_anf
+find . -type f -printf "%M %u %U %g %G %s %TD %TT %p \n" > ../find_anf.txt
+
+
