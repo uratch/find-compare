@@ -13,16 +13,18 @@ mkdir dir_anf
 mkdir dir_nas/dir
 mkdir dir_anf/dir
 
+### ----- ###
+
 #
 # both same file.
 #
 echo "A" > dir_nas/a.txt
 echo "A" > dir_nas/dir/a.txt
-# add sleep difference for buffering.
+# give different_timestamp for buffering.
 sleep 1
 echo "A" > dir_anf/a.txt
 echo "A" > dir_anf/dir/a.txt
-# simulate rsync -a
+# simulate 'rsync -a'
 touch -r dir_nas/a.txt     dir_anf/a.txt
 touch -r dir_nas/dir/a.txt dir_anf/dir/a.txt
 
@@ -33,8 +35,8 @@ echo "B" > dir_nas/b.txt
 echo "B" > dir_nas/dir/b.txt
 echo "B" > dir_anf/b.txt
 echo "B" > dir_anf/dir/b.txt
-# add sleep difference for buffering.
-sleep 2
+# give different_timestamp for buffering.
+sleep 1
 echo "b" > dir_nas/b.txt
 echo "b" > dir_nas/dir/b.txt
 
@@ -62,6 +64,10 @@ echo "D" > dir_nas/dir/d.txt
 #
 echo "E" > dir_anf/e.txt
 echo "E" > dir_anf/dir/e.txt
+
+
+
+### ----- ###
 
 #
 # find
