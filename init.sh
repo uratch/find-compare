@@ -16,33 +16,43 @@ mkdir dir_anf/dir
 ### ----- ###
 
 #
+# only NAS.
+#
+echo "A" > dir_nas/a.txt
+echo "A" > dir_nas/dir/a.txt
+
+#
 # both same file.
 #
 
 # for is simulate: many many files exist.
 for i in {1..10}; do
-    echo "A$i" > dir_nas/a$i.txt
-    echo "A$i" > dir_nas/dir/a$i.txt
+    echo "B1-$i" > dir_nas/b1-$i.txt
+    echo "B1-$i" > dir_nas/dir/b1-$i.txt
     # give different_timestamp for buffering.
     sleep 1
-    echo "A$i" > dir_anf/a$i.txt
-    echo "A$i" > dir_anf/dir/a$i.txt
+    echo "B1-$i" > dir_anf/b1-$i.txt
+    echo "B1-$i" > dir_anf/dir/b1-$i.txt
     # simulate 'rsync -a'
-    touch -r dir_nas/a$i.txt     dir_anf/a$i.txt
-    touch -r dir_nas/dir/a$i.txt dir_anf/dir/a$i.txt
+    touch -r dir_nas/b1-$i.txt     dir_anf/b1-$i.txt
+    touch -r dir_nas/dir/b1-$i.txt dir_anf/dir/b1-$i.txt
 done
 
 #
-# different file. - normal update
+# collapsed file.
 #
-echo "B" > dir_nas/b.txt
-echo "B" > dir_nas/dir/b.txt
-echo "B" > dir_anf/b.txt
-echo "B" > dir_anf/dir/b.txt
+echo "B-2" > dir_nas/b-2.txt
+echo "B-2" > dir_nas/dir/b-2.txt
 # give different_timestamp for buffering.
 sleep 1
-echo "b" > dir_nas/b.txt
-echo "b" > dir_nas/dir/b.txt
+echo "B-2" > dir_anf/b-2.txt
+echo "B-2" > dir_anf/dir/b-2.txt
+# simulate 'rsync -a'
+touch -r dir_nas/b-2.txt     dir_anf/b-2.txt
+touch -r dir_nas/dir/b-2.txt dir_anf/dir/b-2.txt
+# simulate collapse
+chmod 644 dir_nas/b-2.txt dir_nas/dir/b-2.txt
+chmod 600 dir_nas/b-2.txt dir_nas/dir/b-2.txt
 
 #
 # milli sec difference file.
@@ -58,32 +68,23 @@ TIMESTAMP=`stat dir_nas/dir/c.txt |grep Modify|awk '{print $2$3}'| sed -e 's/[-|
 touch -t $TIMESTAMP dir_anf/dir/c.txt
 
 #
-# collapsed file.
+# different file. - normal update
 #
 echo "D" > dir_nas/d.txt
 echo "D" > dir_nas/dir/d.txt
-# give different_timestamp for buffering.
-sleep 1
 echo "D" > dir_anf/d.txt
 echo "D" > dir_anf/dir/d.txt
-# simulate 'rsync -a'
-touch -r dir_nas/d.txt     dir_anf/d.txt
-touch -r dir_nas/dir/d.txt dir_anf/dir/d.txt
-# simulate collapse
-chmod 644 dir_nas/d.txt dir_nas/dir/d.txt
-chmod 600 dir_nas/d.txt dir_nas/dir/d.txt
-
-#
-# only NAS.
-#
-echo "X" > dir_nas/x.txt
-echo "X" > dir_nas/dir/x.txt
+# give different_timestamp for buffering.
+sleep 1
+# simulate update source file.
+echo "d" > dir_nas/d.txt
+echo "d" > dir_nas/dir/d.txt
 
 #
 # only ANF.
 #
-echo "Y" > dir_anf/y.txt
-echo "Y" > dir_anf/dir/y.txt
+echo "E" > dir_anf/e.txt
+echo "E" > dir_anf/dir/e.txt
 
 
 
