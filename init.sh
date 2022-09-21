@@ -54,16 +54,32 @@ TIMESTAMP=`stat dir_nas/dir/c.txt |grep Modify|awk '{print $2$3}'| sed -e 's/[-|
 touch -t $TIMESTAMP dir_anf/dir/c.txt
 
 #
-# only NAS.
+# collapsed file.
 #
 echo "D" > dir_nas/d.txt
 echo "D" > dir_nas/dir/d.txt
+# give different_timestamp for buffering.
+sleep 1
+echo "D" > dir_anf/d.txt
+echo "D" > dir_anf/dir/d.txt
+# simulate 'rsync -a'
+touch -r dir_nas/d.txt     dir_anf/d.txt
+touch -r dir_nas/dir/d.txt dir_anf/dir/d.txt
+# simulate collapse
+chmod 644 dir_nas/d.txt dir_nas/dir/d.txt
+chmod 600 dir_nas/d.txt dir_nas/dir/d.txt
+
+#
+# only NAS.
+#
+echo "X" > dir_nas/x.txt
+echo "X" > dir_nas/dir/x.txt
 
 #
 # only ANF.
 #
-echo "E" > dir_anf/e.txt
-echo "E" > dir_anf/dir/e.txt
+echo "Y" > dir_anf/y.txt
+echo "Y" > dir_anf/dir/y.txt
 
 
 
