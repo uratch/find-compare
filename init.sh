@@ -18,15 +18,19 @@ mkdir dir_anf/dir
 #
 # both same file.
 #
-echo "A" > dir_nas/a.txt
-echo "A" > dir_nas/dir/a.txt
-# give different_timestamp for buffering.
-sleep 1
-echo "A" > dir_anf/a.txt
-echo "A" > dir_anf/dir/a.txt
-# simulate 'rsync -a'
-touch -r dir_nas/a.txt     dir_anf/a.txt
-touch -r dir_nas/dir/a.txt dir_anf/dir/a.txt
+
+# for is simulate: many many files exist.
+for i in {1..10}; do
+    echo "A$i" > dir_nas/a$i.txt
+    echo "A$i" > dir_nas/dir/a$i.txt
+    # give different_timestamp for buffering.
+    sleep 1
+    echo "A$i" > dir_anf/a$i.txt
+    echo "A$i" > dir_anf/dir/a$i.txt
+    # simulate 'rsync -a'
+    touch -r dir_nas/a$i.txt     dir_anf/a$i.txt
+    touch -r dir_nas/dir/a$i.txt dir_anf/dir/a$i.txt
+done
 
 #
 # different file. - normal update
