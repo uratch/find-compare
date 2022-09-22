@@ -18,15 +18,17 @@ mkdir dir_anf/dir
 #
 # only NAS.
 #
-echo "A" > dir_nas/a.txt
-echo "A" > dir_nas/dir/a.txt
+for i in {1..3}; do
+    echo "A-$i" > dir_nas/a-$i.txt
+    echo "A-$i" > dir_nas/dir/a-$i.txt
+done
 
 #
 # both same file.
 #
 
 # for is simulate: many many files exist.
-for i in {1..10}; do
+for i in {1..50}; do
     echo "B1-$i" > dir_nas/b1-$i.txt
     echo "B1-$i" > dir_nas/dir/b1-$i.txt
     # give different_timestamp for buffering.
