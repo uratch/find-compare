@@ -1,4 +1,6 @@
-1. ANF-diff into dictionary
+1. ANF-diff into Python dictionary 
+   - key: ./b-2.txt 
+   - value: list ['-rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:32:47', '7979295340']
 
 > -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:32:47.7979295340 ./b-2.txt 
 > -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:48.0000000000 ./c.txt 
@@ -6,8 +8,8 @@
 > -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:49.8219699640 ./e.txt 
 
 2. check exist NAS-diff
-   - not exist: pop the key
-   - exist: compare meta & milli sec
+   -> not exist: skip
+   -> exist: compare list0:meta & list1:milli_sec
 
 < -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:31:57.6729288090 ./a-1.txt 
 < -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:31:57.6729288090 ./a-2.txt 
@@ -16,12 +18,20 @@
 < -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:48.8019495900 ./c.txt 
 < -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:49.8179698840 ./d.txt 
 
+
+
+
 --
+Action Sample
 
-* must remove > -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:32:47.7979295340 ./b-2.txt 
-* must remove > -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:48.0000000000 ./c.txt 
+> -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:32:47.7979295340 ./b-2.txt 
+ exist: invalid comparison. must remove from ANF
+> -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:48.0000000000 ./c.txt 
+ exist: invalid comparison. must remove from ANF
 > -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:48.8179499110 ./d.txt 
-
+ exist: no action
+> -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:49.8219699640 ./e.txt 
+ not exist: skip
 
 
 < -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:31:57.6729288090 ./a-1.txt 
