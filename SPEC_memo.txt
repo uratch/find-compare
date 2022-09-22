@@ -1,9 +1,5 @@
 1. ANF-diff into dictionary
 
-> -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:32:47.7979295340 ./dir/b-2.txt 
-> -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:48.0000000000 ./dir/c.txt 
-> -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:48.8179499110 ./dir/d.txt 
-> -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:49.8219699640 ./dir/e.txt 
 > -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:32:47.7979295340 ./b-2.txt 
 > -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:48.0000000000 ./c.txt 
 > -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:48.8179499110 ./d.txt 
@@ -13,11 +9,24 @@
    - not exist: pop the key
    - exist: compare meta & milli sec
 
-> -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:32:47.7979295340 ./dir/b-2.txt 
-> -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:48.0000000000 ./dir/c.txt 
-> -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:48.8179499110 ./dir/d.txt 
-> -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:49.8219699640 ./dir/e.txt 
-> -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:32:47.7979295340 ./b-2.txt 
-> -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:48.0000000000 ./c.txt 
+< -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:31:57.6729288090 ./a-1.txt 
+< -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:31:57.6729288090 ./a-2.txt 
+< -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:31:57.6729288090 ./a-3.txt 
+< -rw------- ec2-user 1000 ec2-user 1000 4 09/22/22 00:32:47.7979295340 ./b-2.txt 
+< -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:48.8019495900 ./c.txt 
+< -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:49.8179698840 ./d.txt 
+
+--
+
+* must remove > -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:32:47.7979295340 ./b-2.txt 
+* must remove > -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:48.0000000000 ./c.txt 
 > -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:48.8179499110 ./d.txt 
-> -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:49.8219699640 ./e.txt 
+
+
+
+< -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:31:57.6729288090 ./a-1.txt 
+< -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:31:57.6729288090 ./a-2.txt 
+< -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:31:57.6729288090 ./a-3.txt 
+< -rw------- ec2-user 1000 ec2-user 1000 4 09/22/22 00:32:47.7979295340 ./b-2.txt 
+< -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:48.8019495900 ./c.txt 
+< -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:49.8179698840 ./d.txt 
