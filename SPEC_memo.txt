@@ -1,6 +1,7 @@
 1. ANF-diff into Python dictionary 
    - key: ./b-2.txt 
-   - value: list ['-rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:32:47', '7979295340']
+   - value: list ['-rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:32:47',
+                  '7979295340']
 
 > -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:32:47.7979295340 ./b-2.txt 
 > -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:48.0000000000 ./c.txt 
@@ -9,7 +10,10 @@
 
 2. check exist NAS-diff
    -> not exist: skip
-   -> exist: compare list0:meta & list1:milli_sec
+   -> exist: compare list0: meta 
+                       diff exist -> logging & rm from ANF 
+                     list1: milli_sec
+                       diff exist -> logging & rm from ANF 
 
 < -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:31:57.6729288090 ./a-1.txt 
 < -rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:31:57.6729288090 ./a-2.txt 
