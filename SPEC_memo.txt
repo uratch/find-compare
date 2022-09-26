@@ -1,4 +1,4 @@
-1. ANF-diff into Python dictionary 
+1. ANF-diff(diff_right.txt) into Python dictionary 
    - key: ./b-2.txt 
    - value: list ['-rw-rw-r-- ec2-user 1000 ec2-user 1000 4 09/22/22 00:32:47',
                   '7979295340']
@@ -8,7 +8,7 @@
 > -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:48.8179499110 ./d.txt 
 > -rw-rw-r-- ec2-user 1000 ec2-user 1000 2 09/22/22 00:32:49.8219699640 ./e.txt 
 
-2. check exist NAS-diff
+2. check exist NAS-diff(diff_left.txt)
    -> not exist: skip
    -> exist: compare list0: meta 
                        diff exist -> logging & rm from ANF 
